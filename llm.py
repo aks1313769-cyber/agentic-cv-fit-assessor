@@ -45,6 +45,6 @@ Job Description:
         result = response.json()
         return result["choices"][0]["message"]["content"]
     except requests.exceptions.HTTPError as http_err:
-        return f"⚠️ LLM evaluation failed: {http_err}"
+        return f"LLM evaluation failed: {http_err}"
     except Exception as e:
-        return f"⚠️ LLM evaluation failed: {e}"
+        return f"LLM evaluation failed: {e}"
