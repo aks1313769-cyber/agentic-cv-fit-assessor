@@ -32,7 +32,7 @@ This app allows you to:
 | `requirements.txt` | All dependencies listed here |
 
 ---
-##🔐 Privacy Notes
+🔐 Privacy Notes
 No data is stored. All processing happens in memory and is user-side unless deployed to a server.
 
 git clone https://github.com/aks1313769-cyber/agentic-cv-fit-assessor.git
