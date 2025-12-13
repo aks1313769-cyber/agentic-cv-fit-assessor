@@ -1,8 +1,8 @@
-# 🤖 LLM Resume Analyzer
+# LLM Resume Analyzer
 
 A professional-grade resume-job fit assessment tool using LLMs and skill intelligence.
 
-## 🚀 Overview
+## Overview
 
 This app allows you to:
 - Upload a resume (PDF or raw text)
@@ -13,12 +13,12 @@ This app allows you to:
 
 > Useful for applicants, recruiters, and hiring managers seeking skill-based alignment.
 
-## 🧠 Powered by:
+## Powered by:
 - `sentence-transformers/all-MiniLM-L6-v2` (skill embedding)
 - `Mixtral-8x7b` via `Groq API` (LLM feedback)
 - Streamlit UI (interactive, fast)
 
-## 📁 File Structure
+## File Structure
 
 | File | Purpose |
 |------|---------|
@@ -32,7 +32,7 @@ This app allows you to:
 | `requirements.txt` | All dependencies listed here |
 
 ---
-🔐 Privacy Notes
+## Privacy Notes
 No data is stored. All processing happens in memory and is user-side unless deployed to a server.
 
 git clone https://github.com/aks1313769-cyber/agentic-cv-fit-assessor.git
