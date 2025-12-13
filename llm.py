@@ -5,13 +5,22 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_BASE_URL = "https://api.groq.com/openai/v1/chat/completions"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_BASE_URL = "https://api.openai.com/v1/chat/completions"
+DEFAULT_MODEL = "gpt-4o-mini"
 
-HEADERS = {
-    "Authorization": f"Bearer {GROQ_API_KEY}",
-    "Content-Type": "application/json"
-}
+
+def _build_headers():
+    if not OPENAI_API_KEY:
+        raise ValueError(
+            "OPENAI_API_KEY is not set. Please configure it before running the evaluator."
+        )
+
+    return {
+        "Authorization": f"Bearer {OPENAI_API_KEY}",
+        "Content-Type": "application/json",
+    }
+
 
 def analyze_with_llm(resume_text, jd_text):
     prompt = f"""
@@ -31,16 +40,17 @@ Job Description:
 """
 
     payload = {
-        "model": "mixtral-8x7b-32768",
+        "model": DEFAULT_MODEL,
         "messages": [
             {"role": "system", "content": "You are an expert in resume evaluation."},
-            {"role": "user", "content": prompt}
+            {"role": "user", "content": prompt},
         ],
-        "temperature": 0.4
+        "temperature": 0.4,
     }
 
     try:
-        response = requests.post(GROQ_BASE_URL, headers=HEADERS, json=payload)
+        headers = _build_headers()
+        response = requests.post(OPENAI_BASE_URL, headers=headers, json=payload, timeout=30)
         response.raise_for_status()
         result = response.json()
         return result["choices"][0]["message"]["content"]
